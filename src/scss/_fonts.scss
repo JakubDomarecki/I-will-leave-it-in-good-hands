@@ -1,0 +1,39 @@
+@font-face {
+  font-family: 'Open Sans regular';
+  src: local('Open Sans regular'),
+  url('../fonts/opensans-regular-webfont.woff2') format('woff2'),
+  url('../fonts/opensans-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Open Sans light';
+  src: local('Open Sans light'),
+  url('../fonts/opensans-light-webfont.woff2') format('woff2'),
+  url('../fonts/opensans-light-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Open Sans semibold';
+  src: local('Open Sans semibold'),
+  url('../fonts/opensans-semibold-webfont.woff2') format('woff2'),
+  url('../fonts/opensans-semibold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'merriweather-light';
+  src: local('merriweather-light'),
+  url('../fonts/merriweather-light-webfont.woff2') format('woff2'),
+  url('../fonts/merriweather-light-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+$font-base: 'Open Sans regular';
+$font-alt: 'merriweather-light';
