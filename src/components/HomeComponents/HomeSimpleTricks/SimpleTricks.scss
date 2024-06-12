@@ -1,0 +1,46 @@
+@import "../../../scss/colors";
+.StepsContainer{
+  width: 100%;
+  max-width: 1274px ;
+  margin: 0 auto;
+}
+.SimpleTricksHeader{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 3rem;
+}
+.SimpleTricks_Tittle{
+  font-size: 38px;
+  margin-bottom: 2rem;
+}
+.simpleSteps{
+  background-color: $colorWhite ;
+  display: flex;
+}
+.steps{
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  padding: 3rem;
+}
+.step{
+  max-width: 165px;
+}
+.simpleSteps{
+  margin-top: 2rem;
+}
+.step_title{
+  font-size: 18px;
+  color: $colorDarkGrey;
+  margin: 1rem 0;
+  &::after{
+    content: "";
+    width: 60px;
+    height: 1px;
+    background-color: black;
+    display: block;
+    margin-top: 1rem;
+    margin-left: 3.5rem;
+  }
+}

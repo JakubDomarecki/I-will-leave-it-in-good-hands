@@ -1,0 +1,93 @@
+@import "../../../scss/colors";
+.contact{
+  background-image: url("../../../assets/Background-Contact-Form.jpg");
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 110vh;
+  position: relative;
+  &:before{
+    content: "";
+    width: 100%;
+    background-color:#FFFFFFC9;
+    display: block;
+    height: 110vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+.form_inputs{
+  display: flex;
+  margin-top: 4rem;
+}
+.single_input{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+}
+.contact_title{
+  display: flex;
+  justify-content: center;
+  font-size: 38px;
+  margin-bottom: 1rem;
+}
+.contact_form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 8.875rem;
+  width: 528px;
+  z-index: 99;
+}
+.Button_div{
+  display: flex;
+  justify-content: flex-end;
+}
+.sendButton{
+  padding: 0.5rem 2rem;
+  background-color: transparent;
+  font-family: "Open Sans light", sans-serif;
+  border: 0.75px solid $colorDarkGrey;
+  cursor: pointer;
+}
+.contact_texarea{
+  min-width: 528px;
+  max-width: 528px;
+  min-height: 80px;
+  max-height: 80px;
+  background-color: transparent;
+  border: none;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid black ;
+  &::after{
+    content: "";
+    height: 1px;
+    background: black;
+  }
+  &::placeholder{
+    color: #3C3C3C26;
+  }
+}
+.contact_label{
+  font-family: "Open Sans semibold", sans-serif;
+  margin-bottom: 1rem;
+}
+.contact_input{
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid $colorDarkGrey;
+  &::placeholder{
+    color: #3C3C3C26;
+  }
+}
+.icons{
+  display: flex;
+  justify-content: flex-end;
+}
+

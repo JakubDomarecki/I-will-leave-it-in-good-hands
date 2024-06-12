@@ -1,12 +1,29 @@
 import React from "react";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {createRoot} from "react-dom/client";
+import './scss/main.scss';
 import Home from "./components/Home.jsx";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import Login from "./components/login/login.jsx";
+import Register from "./components/register/register.jsx";
+import NotFound from "./components/notFound/NotFound.jsx";
+import MainLayout from "./components/MainLayout/MainLayout.jsx";
+import Logout from "./components/Logout/Logout.jsx";
 const App = () => {
     return(
-      <BrowserRouter>
-          <Routes>
-              <Route path='/' element={<Home/>}/>
-          </Routes>
-      </BrowserRouter>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<MainLayout/>}>
+                    <Route path='/' element={<Home/>}/>
+                    <Route path='/login' element={<Login/>}/>
+                    <Route path='/register' element={<Register/>}/>
+                    <Route path='/logout' element={<Logout/>}/>
+                    <Route path='*' element={<NotFound/>}/>
+                </Route>
+            </Routes>
+        </BrowserRouter>
     );
 }
+
+const container = document.getElementById('app');
+const root = createRoot(container);
+root.render(<App/>)

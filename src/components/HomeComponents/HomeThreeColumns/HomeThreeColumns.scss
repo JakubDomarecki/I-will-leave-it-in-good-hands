@@ -1,0 +1,30 @@
+@import "../../../scss/colors";
+.ThreeColumns{
+  background-image: url("../../../assets/3 Columns Background.png");
+  background-color: green;
+}
+.informations{
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  padding: 3rem;
+}
+.single_information{
+  max-width: 420px;
+}
+.information_number{
+  font-family: "Open Sans light", sans-serif;
+  font-size: 90px;
+  color: $colorDarkYellow;
+  margin-bottom: 1rem;
+}
+.information_title{
+  font-size: 18px;
+  color: $colorDarkGrey;
+  margin-bottom: 1rem;
+}
+.information_description{
+  font-family: 'merriweather-light', sans-serif;
+  color: $colorDarkGrey;
+  line-height: 2rem;
+}

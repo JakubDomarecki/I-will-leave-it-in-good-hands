@@ -1,0 +1,42 @@
+@import "../../scss/colors";
+.login{
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.login_form{
+  display: flex;
+  flex-direction: column;
+}
+.form_div{
+  background-color:$colorWhite ;
+  padding: 2rem 5rem;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+}
+.login_h2{
+  margin-bottom: 1rem;
+  color: $colorDarkGrey;
+}
+.login_input{
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid $colorDarkGrey;
+}
+.form_label{
+  font-family: "Open Sans semibold", sans-serif;
+  color: $colorDarkGrey;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+.login_buttons{
+  margin: 10rem;
+  color: $colorDarkGrey;
+  text-decoration: none;
+}
+.login_button{
+  border: 1px solid $colorDarkGrey;
+  padding: 0.5rem 1rem;
+}

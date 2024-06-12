@@ -10,3 +10,8 @@
 body{
   font-family: $font-base, sans-serif;
 }
+.container{
+  max-width: 1616px;
+  width: 100%;
+  margin: 0 auto;
+}
