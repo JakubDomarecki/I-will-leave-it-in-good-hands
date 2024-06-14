@@ -18,8 +18,8 @@ const HomeHeader = () => {
                     <p className="header_description_p">Zacznij pomagać! <br/>Oddaj niechciane rzeczy w zaufane ręce</p>
                     <img src={decoration} className="header_img"/>
                     <div className="boxes">
-                        <GiveThings text1={"ODDAJ"} text2={"RZECZY"} to={"/Login"} hasBorder={true}/>
-                        <GiveThings text1={"ZORGANIZUJ"} text2={"ZBIÓRKĘ"} to={"/Login"} hasBorder={true}/>
+                        <GiveThings text1={"ODDAJ"} text2={"RZECZY"} to={"/Login"}/>
+                        <GiveThings text1={"ZORGANIZUJ"} text2={"ZBIÓRKĘ"} to={"/Login"}/>
                     </div>
                 </div>
             </div>

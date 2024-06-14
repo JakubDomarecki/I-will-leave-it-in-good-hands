@@ -59,12 +59,13 @@
 .contact_texarea{
   min-width: 528px;
   max-width: 528px;
-  min-height: 80px;
-  max-height: 80px;
+  min-height: 100px;
+  max-height: 100px;
   background-color: transparent;
   border: none;
   margin-bottom: 1rem;
   border-bottom: 1px solid black ;
+  padding: 0.5rem;
   &::after{
     content: "";
     height: 1px;
@@ -82,12 +83,34 @@
   background-color: transparent;
   border: none;
   border-bottom: 1px solid $colorDarkGrey;
+  padding: 0.5rem;
   &::placeholder{
     color: #3C3C3C26;
   }
+  &:focus{
+    outline: none;
+  }
 }
+.error {
+  border-bottom: 1px solid red;
+}
+
 .icons{
   display: flex;
   justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+
+//walidation
+.error_message{
+  color: red;
+  margin-top: 1rem;
+}
+.success_message{
+  color: green;
+}
+.empty_message{
+  color: red;
+  margin-left: 1rem;
 }
 

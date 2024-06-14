@@ -1,0 +1,39 @@
+@import "../../../scss/colors";
+.help_des{
+  text-align: center;
+  max-width: 670px;
+  margin-bottom: 4rem;
+  font-size: 22px;
+  color: $colorDarkGrey;
+}
+.foundation_container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1334px;
+  border-bottom: 1px solid $colorDarkGrey;
+  text-align: left;
+  padding: 2rem 0;
+}
+.foundation_name{
+  font-size: 26px;
+  font-family: merriweather-light, sans-serif;
+  color: $colorDarkGrey;
+}
+.foundation_mission, .foundation_needs{
+  font-size: 18px;
+  font-family: merriweather-light, sans-serif;
+  color: $colorDarkGrey;
+}
+.foundation_needs{
+  display: flex;
+  align-self: center;
+}
+.single_number{
+  background-color: transparent;
+  padding: 1rem;
+  margin: 1rem;
+  //border: 1px solid $colorDarkGrey;
+  border: none;
+  cursor: pointer;
+}

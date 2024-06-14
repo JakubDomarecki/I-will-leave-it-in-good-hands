@@ -1,5 +1,7 @@
+@import "../../../scss/colors";
 .AboutUs{
   display: flex;
+  background-color: $colorWhite;
 }
 .AboutUs_description{
   width: 50%;

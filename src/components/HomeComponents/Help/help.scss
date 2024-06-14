@@ -1,3 +1,4 @@
+@import "../../../scss/colors";
 .help{
   display: flex;
   margin-top: 4rem;
@@ -10,4 +11,19 @@
 }
 .help_buttons{
   display: flex;
+}
+
+.help_button{
+  margin: 3rem;
+  width: 208px;
+  height: 79px;
+  font-size: 24px;
+  color: $colorDarkGrey;
+  font-family: "Open Sans regular", sans-serif;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+}
+.active {
+  border: 1px solid $colorDarkGrey;
 }
