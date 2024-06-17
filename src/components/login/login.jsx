@@ -13,6 +13,8 @@ const Login = () => {
 
     const [succeed, setSucceed] = useState("")
 
+    const [smthWrong, setSmthWrong] = useState("")
+    
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -44,13 +46,19 @@ const Login = () => {
 
                     setEmail("");
                     setPassword("");
+
+
                 })
                 .catch((error) => {
                     setSucceed("");
 
                     const errorCode = error.code;
                     const errorMessage = error.message;
-                    console.error("Błąd logowania:", errorCode, errorMessage);
+
+
+                    if (errorCode === 'auth/invalid-credential') {
+                        setSmthWrong("Nieprawidłowe hasło lub email");
+                    }
 
                 });
         }
@@ -80,7 +88,7 @@ return(
             <form className="form_login" onSubmit={handleSubmit}>
                 <div className="login_form">
                     <label className="form_label">Email</label>
-                    <input type="text" className={`login_input ${emailMessage ? 'input_error' : ''}`} value={email} onChange={handleEmailChange}/>
+                    <input type="text" className={`login_input ${emailMessage ? 'input_error' : ''} `} value={email} onChange={handleEmailChange}/>
                     {emailMessage && <p className="error_message">{emailMessage}</p>}
                 </div>
                 <div className="login_form">
@@ -88,6 +96,8 @@ return(
                     <input type="password" className={`login_input ${passwordMessage ? 'input_error' : ''}`} value={password}
                            onChange={handlePasswordChange}/>
                     {passwordMessage && <p className="error_message">{passwordMessage}</p>}
+                    {smthWrong && <p className="error_message">{smthWrong}</p>}
+
                 </div>
                 <div>
                     <Link to="/register" className="login_buttons">Załóż konto</Link>
