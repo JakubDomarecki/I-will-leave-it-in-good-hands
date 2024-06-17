@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import decoration from '../../assets/Decoration.svg'
 import {Link} from "react-router-dom";
-
+import {auth} from '../firebaseConfig.js'
+import { createUserWithEmailAndPassword } from "firebase/auth";
 const Register = () => {
 
     const [email, setEmail] = useState('')
@@ -10,7 +11,9 @@ const Register = () => {
 
     const [passwordMessage, setPasswordMessage] = useState("")
     const [emailMessage, setEmailMessage] = useState("")
-    const [passwordRepeatMessage, setPasswordRepeatMessage] = useState()
+    const [passwordRepeatMessage, setPasswordRepeatMessage] = useState("")
+
+    const [succeed, setSucceed] = useState("")
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -45,10 +48,27 @@ const Register = () => {
         }
 
         if (valid) {
-            setEmail("");
-            setPassword("");
-            setPasswordRepeat("");
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
 
+                    const  user = userCredential.user;
+                    // console.log("Zarejestrowano:", user);
+                    setSucceed("Rejestracja zakończona pomyślnie")
+                    setEmail("");
+                    setPassword("");
+                    setPasswordRepeat("");
+                })
+                .catch((error) => {
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    console.error("Błąd rejestracji:", errorCode, errorMessage);
+
+                    if (errorCode === 'auth/email-already-in-use') {
+                        setEmailMessage("Podany email jest już używany!");
+                    } else {
+                        setEmailMessage(errorMessage);
+                    }
+                });
         }
     }
 
@@ -78,6 +98,7 @@ const Register = () => {
         <div className="login">
             <h2 className="login_h2"> Załóż konto </h2>
             <img src={decoration} className="login_decoration"/>
+            {succeed && <p className="succed">{succeed}</p>}
             <div className="form_div">
                 <form className="form_login" onSubmit={handleSubmit}>
                     <div className="login_form">

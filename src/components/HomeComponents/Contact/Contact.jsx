@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import decoration from '../../../assets/Decoration.svg'
 import './Contact.scss'
 import {Element} from "react-scroll";
@@ -11,86 +11,68 @@ const Contact = () => {
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
 
-
-    const [emptyMessage, setEmptyMessage] = useState("")
-    const [oneWordMessage, setOneWordMessage] = useState("")
-    const [maxWords, setmaxWords] = useState("")
-    const [emailWalidation, setemailWalidation] = useState("")
+    const [nameError, setNameError] = useState("")
+    const [emailError, setemailError] = useState("")
+    const [messageError, setmessageError] = useState("")
 
 
     const [success, setSuccess] = useState()
-    const [error, setError] = useState()
+    const [error, setError] = useState([])
 
+    useEffect(() => {
+        const emailError = error.find(msg => msg.param === 'email');
+        const nameError = error.find(msg => msg.param === 'name');
+        const messageError = error.find(msg => msg.param === 'message');
+
+        if (emailError) {
+            setemailError(emailError.msg);
+        }else {
+            setemailError(null)
+        }
+
+        if (nameError) {
+            setNameError(nameError.msg);
+        }else {
+            setNameError(null)
+        }
+
+        if (messageError) {
+            setmessageError(messageError.msg);
+        }else {
+            setmessageError(null)
+        }
+
+
+    }, [error]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         const wholeMessage = {
-                        name,
-                        email,
-                        message,
-                    };
+            name,
+            email,
+            message,
+        };
 
         fetch('https://fer-api.coderslab.pl/v1/portfolio/contact',{
-                        method: 'POST',
-                        body: JSON.stringify(wholeMessage),
-                        headers: {
-                            "Content-Type": "application/json"
-                        }
-                    })
-                        .then(resp => resp.json())
-                        .then(data => setSuccess(data))
-                        .catch(err => setError(err));
-
-    //     const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-    //
-    //     if (name === "" || email === "" || message === "") {
-    //         setEmptyMessage("Pola nie mogą być puste");
-    //         setOneWordMessage("");
-    //         setmaxWords("");
-    //         setemailWalidation("");
-    //     } else {
-    //         setEmptyMessage("");
-    //
-    //
-    //
-    //         if (name.trim().split(" ").length > 1) {
-    //             setOneWordMessage("Podane imię jest nieprawidłowe!");
-    //
-    //         } else {
-    //             setOneWordMessage("");
-    //         }
-    //
-    //         if (!re.test(email)) {
-    //             setemailWalidation("Podany email jest nieprawidłowy!");
-    //         } else {
-    //             setemailWalidation("");
-    //         }
-    //
-    //         if (message.length < 120) {
-    //             setmaxWords("Wiadomość musi mieć conajmniej 120 znaków!");
-    //         } else {
-    //             setmaxWords("");
-    //         }
-    //
-    //         if (name.trim().split(" ").length === 1 && re.test(email) && message.length >= 120) {
-    //             const wholeMessage = {
-    //                 name,
-    //                 email,
-    //                 message,
-    //             };
-    //             fetch('https://fer-api.coderslab.pl/v1/portfolio/contact',{
-    //                 method: 'POST',
-    //                 body: JSON.stringify(wholeMessage),
-    //                 headers: {
-    //                     "Content-Type": "application/json"
-    //                 }
-    //             })
-    //                 .then(resp => resp.json())
-    //                 .then(data => setSuccess(data))
-    //                 .catch(err => setError(err));
-    //         }
-    //     }
+            method: 'POST',
+            body: JSON.stringify(wholeMessage),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(resp => {
+                return resp.json()
+            })
+            .then(data => {
+                if (data.status === 'error') {
+                    setError(data.errors);
+                    setSuccess(null);
+                } else {
+                    setSuccess(data);
+                    setError([]);
+                }
+            })
     };
 
 
@@ -102,9 +84,9 @@ const Contact = () => {
                 <div className="contact_form">
                     <p className="contact_title">Skontaktuj się z nami</p>
                     <img src={decoration}/>
+
                     {success && success.status  === 'success' && <p className="success_message">Wiadomość została wysłana! Wkrótce się skontaktujemy.</p>}
-                    {error && error.status  === 'error' && <p className="error_message">fSDFASDFASDF</p>}
-                    {/*{error && <p className="error_message">{error}</p>}*/}
+
                     <form onSubmit={handleSubmit}>
                         <div className="form_inputs">
                             <div className="single_input">
@@ -113,7 +95,9 @@ const Contact = () => {
                                        type="text"
                                        placeholder="Krzysztof"
                                        value={name} onChange={e => setName(e.target.value)}/>
-                                {oneWordMessage && <p className="error_message">{oneWordMessage}</p>}
+
+                                {nameError && <p className="error_message">{nameError}</p>}
+
                             </div>
                             <div className="single_input">
                                 <label className="contact_label">Wpisz swój email</label>
@@ -122,7 +106,9 @@ const Contact = () => {
                                        placeholder="abc@xyz.pl"
                                         value={email}
                                        onChange={(e) => setEmail(e.target.value)}/>
-                                {emailWalidation && <p className="error_message">{emailWalidation}</p>}
+
+                                {emailError && <p className="error_message">{emailError}</p>}
+
                             </div>
                         </div>
                         <div className="single_input">
@@ -133,9 +119,11 @@ const Contact = () => {
                                         onChange={e => setMessage(e.target.value)}>
 
                             </textarea>
-                            {maxWords && <p className="error_message">{maxWords}</p>}
+                            {messageError && <p className="error_message">{messageError}</p>}
+
                         </div>
-                        {emptyMessage && <p className="empty_message">{emptyMessage}</p>}
+
+
                         <div className="Button_div">
                             <button className="sendButton">Wyślij</button>
                         </div>
