@@ -1,27 +1,78 @@
-import React from "react";
-import './login.scss'
+import React, {useState} from "react";
+import './login&register.scss'
 import decoration from '../../assets/Decoration.svg'
 import {Link} from "react-router-dom";
 const Login = () => {
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+
+    const [passwordMessage, setPasswordMessage] = useState("")
+    const [emailMessage, setEmailMessage] = useState("")
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
+        let valid = true;
+
+        if (!re.test(email)) {
+            setEmailMessage("Podany email jest nieprawidłowy!");
+            valid = false;
+        } else {
+            setEmailMessage("");
+        }
+
+        if (password.length < 6) {
+            setPasswordMessage('Hasło jest za krótkie!');
+            valid = false;
+        } else {
+            setPasswordMessage('');
+        }
+
+        if (valid) {
+            setEmail("");
+            setPassword("");
+        }
+    }
+
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+        if (emailMessage) {
+            setEmailMessage("");
+        }
+    }
+
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+        if (passwordMessage) {
+            setPasswordMessage("");
+        }
+    }
+
+
 return(
     <div className="login">
         <h2 className="login_h2"> Zaloguj się </h2>
-        <img src={decoration}/>
+        <img src={decoration} className="login_decoration"/>
         <div className="form_div">
-            <form>
+            <form className="form_login" onSubmit={handleSubmit}>
                 <div className="login_form">
                     <label className="form_label">Email</label>
-                    <input type="text" className="login_input"/>
+                    <input type="text" className={`login_input ${emailMessage ? 'input_error' : ''}`} value={email} onChange={handleEmailChange}/>
+                    {emailMessage && <p className="error_message">{emailMessage}</p>}
                 </div>
                 <div className="login_form">
                     <label className="form_label">Hasło</label>
-                    <input type="Hasło" className="login_input"/>
+                    <input type="password" className={`login_input ${passwordMessage ? 'input_error' : ''}`} value={password}
+                           onChange={handlePasswordChange}/>
+                    {passwordMessage && <p className="error_message">{passwordMessage}</p>}
+                </div>
+                <div>
+                    <Link to="/register" className="login_buttons">Załóż konto</Link>
+                    <button className="login_buttons login_button">Zaloguj się</button>
                 </div>
             </form>
-        </div>
-        <div>
-            <Link to="/register" className="login_buttons">Załóż konto</Link>
-            <Link to="/login" className="login_buttons login_button">Zaloguj się</Link>
         </div>
     </div>
 )

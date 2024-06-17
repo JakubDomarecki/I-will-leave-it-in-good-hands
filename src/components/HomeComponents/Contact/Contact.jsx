@@ -10,10 +10,13 @@ const Contact = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [message, setMessage] = useState("");
+
+
     const [emptyMessage, setEmptyMessage] = useState("")
     const [oneWordMessage, setOneWordMessage] = useState("")
     const [maxWords, setmaxWords] = useState("")
     const [emailWalidation, setemailWalidation] = useState("")
+
 
     const [success, setSuccess] = useState()
     const [error, setError] = useState()
@@ -22,55 +25,72 @@ const Contact = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        const wholeMessage = {
+                        name,
+                        email,
+                        message,
+                    };
 
-        if (name === "" || email === "" || message === "") {
-            setEmptyMessage("Pola nie mogą być puste");
-            setOneWordMessage("");
-            setmaxWords("");
-            setemailWalidation("");
-        } else {
-            setEmptyMessage("");
+        fetch('https://fer-api.coderslab.pl/v1/portfolio/contact',{
+                        method: 'POST',
+                        body: JSON.stringify(wholeMessage),
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    })
+                        .then(resp => resp.json())
+                        .then(data => setSuccess(data))
+                        .catch(err => setError(err));
 
-
-
-            if (name.trim().split(" ").length > 1) {
-                setOneWordMessage("Podane imię jest nieprawidłowe");
-
-            } else {
-                setOneWordMessage("");
-            }
-
-            if (!re.test(email)) {
-                setemailWalidation("Podaj prawidłowy adres email");
-            } else {
-                setemailWalidation("");
-            }
-
-            if (message.length < 120) {
-                setmaxWords("Wiadomość musi mieć conajmniej 120 znaków!");
-            } else {
-                setmaxWords("");
-            }
-
-            if (name.trim().split(" ").length === 1 && re.test(email) && message.length >= 120) {
-                const wholeMessage = {
-                    name,
-                    email,
-                    message,
-                };
-                fetch('https://fer-api.coderslab.pl/v1/portfolio/contact',{
-                    method: 'POST',
-                    body: JSON.stringify(wholeMessage),
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                })
-                    .then(resp => resp.json())
-                    .then(data => setSuccess(data))
-                    .catch(err => setError(err));
-            }
-        }
+    //     const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    //
+    //     if (name === "" || email === "" || message === "") {
+    //         setEmptyMessage("Pola nie mogą być puste");
+    //         setOneWordMessage("");
+    //         setmaxWords("");
+    //         setemailWalidation("");
+    //     } else {
+    //         setEmptyMessage("");
+    //
+    //
+    //
+    //         if (name.trim().split(" ").length > 1) {
+    //             setOneWordMessage("Podane imię jest nieprawidłowe!");
+    //
+    //         } else {
+    //             setOneWordMessage("");
+    //         }
+    //
+    //         if (!re.test(email)) {
+    //             setemailWalidation("Podany email jest nieprawidłowy!");
+    //         } else {
+    //             setemailWalidation("");
+    //         }
+    //
+    //         if (message.length < 120) {
+    //             setmaxWords("Wiadomość musi mieć conajmniej 120 znaków!");
+    //         } else {
+    //             setmaxWords("");
+    //         }
+    //
+    //         if (name.trim().split(" ").length === 1 && re.test(email) && message.length >= 120) {
+    //             const wholeMessage = {
+    //                 name,
+    //                 email,
+    //                 message,
+    //             };
+    //             fetch('https://fer-api.coderslab.pl/v1/portfolio/contact',{
+    //                 method: 'POST',
+    //                 body: JSON.stringify(wholeMessage),
+    //                 headers: {
+    //                     "Content-Type": "application/json"
+    //                 }
+    //             })
+    //                 .then(resp => resp.json())
+    //                 .then(data => setSuccess(data))
+    //                 .catch(err => setError(err));
+    //         }
+    //     }
     };
 
 
@@ -82,8 +102,9 @@ const Contact = () => {
                 <div className="contact_form">
                     <p className="contact_title">Skontaktuj się z nami</p>
                     <img src={decoration}/>
-                    {success && <p className="success_message">{success}</p>}
-                    {error && <p className="error_message">{error}</p>}
+                    {success && success.status  === 'success' && <p className="success_message">Wiadomość została wysłana! Wkrótce się skontaktujemy.</p>}
+                    {error && error.status  === 'error' && <p className="error_message">fSDFASDFASDF</p>}
+                    {/*{error && <p className="error_message">{error}</p>}*/}
                     <form onSubmit={handleSubmit}>
                         <div className="form_inputs">
                             <div className="single_input">
