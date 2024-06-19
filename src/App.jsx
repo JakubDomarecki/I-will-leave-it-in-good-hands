@@ -8,19 +8,25 @@ import Register from "./components/register/register.jsx";
 import NotFound from "./components/notFound/NotFound.jsx";
 import MainLayout from "./components/MainLayout/MainLayout.jsx";
 import Logout from "./components/Logout/Logout.jsx";
+import OddajRzeczy from "./components/OddajRzeczy/OddajRzeczy.jsx";
+import {LoginFunction} from "./components/Context.jsx";
+
 const App = () => {
     return(
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<MainLayout/>}>
-                    <Route path='/' element={<Home/>}/>
-                    <Route path='/login' element={<Login/>}/>
-                    <Route path='/register' element={<Register/>}/>
-                    <Route path='/logout' element={<Logout/>}/>
-                    <Route path='*' element={<NotFound/>}/>
-                </Route>
-            </Routes>
-        </BrowserRouter>
+        <LoginFunction>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<MainLayout/>}>
+                        <Route path='/' element={<Home/>}/>
+                        <Route path='/login' element={<Login/>}/>
+                        <Route path='/register' element={<Register/>}/>
+                        <Route path='/logout' element={<Logout/>}/>
+                        <Route path='/Oddaj-rzeczy' element={<OddajRzeczy/>}/>
+                        <Route path='*' element={<NotFound/>}/>
+                    </Route>
+                </Routes>
+            </BrowserRouter>
+        </LoginFunction>
     );
 }
 

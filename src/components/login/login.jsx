@@ -1,9 +1,10 @@
 import React, {useState} from "react";
 import './login&register.scss'
 import decoration from '../../assets/Decoration.svg'
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {auth} from "../firebaseConfig.js";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import {useLogin} from "../Context.jsx";
 const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -11,10 +12,11 @@ const Login = () => {
     const [passwordMessage, setPasswordMessage] = useState("")
     const [emailMessage, setEmailMessage] = useState("")
 
-    const [succeed, setSucceed] = useState("")
-
     const [smthWrong, setSmthWrong] = useState("")
-    
+
+    const navigate = useNavigate();
+    const {login} = useLogin();
+
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -41,16 +43,14 @@ const Login = () => {
                 .then((userCredential) => {
 
                     const user = userCredential.user;
-                    console.log("Zalogowano:", user);
-                    setSucceed("Zalogowano pomyślnie!");
 
                     setEmail("");
                     setPassword("");
 
-
+                    navigate("/");
+                    login(user)
                 })
                 .catch((error) => {
-                    setSucceed("");
 
                     const errorCode = error.code;
                     const errorMessage = error.message;
@@ -83,7 +83,6 @@ return(
     <div className="login">
         <h2 className="login_h2"> Zaloguj się </h2>
         <img src={decoration} className="login_decoration"/>
-        {succeed && <p className="succed">{succeed}</p>}
         <div className="form_div">
             <form className="form_login" onSubmit={handleSubmit}>
                 <div className="login_form">
