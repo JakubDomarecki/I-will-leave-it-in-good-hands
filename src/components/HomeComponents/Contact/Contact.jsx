@@ -71,6 +71,9 @@ const Contact = () => {
                 } else {
                     setSuccess(data);
                     setError([]);
+                    setName('')
+                    setEmail('')
+                    setMessage('')
                 }
             })
     };

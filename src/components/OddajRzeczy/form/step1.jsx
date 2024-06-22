@@ -1,40 +1,50 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import './OddajRzeczyForm.scss'
+import logout from "../../Logout/Logout.jsx";
 
-const Step1 = ({showStep2}) => {
+const Step1 = ({nextStep,handleSelectedChecbkboxes, existingData}) => {
+
+    const [selected, setSelected] = useState([])
+    const [checkboxes, setCheckboxes] = useState(['ubrania, które nadają się do ponownego użycia','ubrania, do wyrzucenia','zabawki', 'książki','inne'])
+
+
+    useEffect(() => {
+        if (existingData) {
+            setSelected(existingData);
+        }
+    }, []);
+
+    const handleSelectedCheckbox = (checkbox) => {
+        setSelected(prevState => {
+            const newSelectedChecboxes = prevState.includes(checkbox)
+                ? prevState.filter(item => item !== checkbox)
+                : [...prevState, checkbox];
+
+            handleSelectedChecbkboxes(newSelectedChecboxes)
+            return newSelectedChecboxes;
+        });
+    };
+
 
     return (
         <div className="OddajRzeczyForm">
             <div className="container">
                 <p className="step_give">Krok 1/4</p>
                 <p className="step_give_desc">Zaznacz co chcesz oddać:</p>
-                <div className="checkobxes">
 
-                    <div className="single_checkbox">
-                        <input type="checkbox" className="step_1_checkbox"/>
-                        <label>ubrania, które nadają się do ponownego użycia</label>
-                    </div>
-                    <div className="single_checkbox">
-                        <input type="checkbox" className="step_1_checkbox"/>
-                        <label>ubrania, do wyrzucenia</label>
-                    </div>
-                    <div className="single_checkbox">
-                        <input type="checkbox" className="step_1_checkbox"/>
-                        <label>zabawki</label>
-                    </div>
-                    <div className="single_checkbox">
-                        <input type="checkbox" className="step_1_checkbox"/>
-                        <label>książki</label>
-                    </div>
-                    <div className="single_checkbox">
-                        <input type="checkbox" className="step_1_checkbox"/>
-                        <label>Inne</label>
-                    </div>
-                    <div>
-                        <button className="OddajRzeczyForm_button" onClick={showStep2}>
-                            Dalej
-                        </button>
-                    </div>
+                <div className="checkobxes">
+                    {checkboxes.map(checkbox => (
+                        <div className="single_checkbox" key={checkbox}>
+                            <input key={checkbox} type="checkbox" className="step_1_checkbox" value={selected}
+                                   onClick={e => handleSelectedCheckbox(checkbox)}/>
+                            <label>{checkbox}</label>
+                        </div>
+                    ))}
+                </div>
+                <div>
+                    <button className="OddajRzeczyForm_button button_step1" onClick={nextStep}>
+                        Dalej
+                    </button>
                 </div>
             </div>
         </div>

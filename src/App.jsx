@@ -9,9 +9,11 @@ import NotFound from "./components/notFound/NotFound.jsx";
 import MainLayout from "./components/MainLayout/MainLayout.jsx";
 import Logout from "./components/Logout/Logout.jsx";
 import OddajRzeczy from "./components/OddajRzeczy/OddajRzeczy.jsx";
-import {LoginFunction} from "./components/Context.jsx";
+import {LoginFunction, useLogin} from "./components/Context.jsx";
+import PrivateRoute from "./components/PrivateRoute.jsx";
 
 const App = () => {
+
     return(
         <LoginFunction>
             <BrowserRouter>
@@ -21,7 +23,11 @@ const App = () => {
                         <Route path='/login' element={<Login/>}/>
                         <Route path='/register' element={<Register/>}/>
                         <Route path='/logout' element={<Logout/>}/>
-                        <Route path='/Oddaj-rzeczy' element={<OddajRzeczy/>}/>
+                        <Route path='/Oddaj-rzeczy' element={
+                            <PrivateRoute>
+                                <OddajRzeczy/>
+                            </PrivateRoute>
+                        }/>
                         <Route path='*' element={<NotFound/>}/>
                     </Route>
                 </Routes>

@@ -6,14 +6,17 @@ import GiveThings from "./HomeComponents/GiveThings/GiveThings.jsx";
 import AboutUs from "./HomeComponents/AboutUs/AboutUs.jsx";
 import Contact from "./HomeComponents/Contact/Contact.jsx";
 import Help from "./HomeComponents/Help/Help.jsx";
+import {useLogin} from "./Context.jsx";
 
 const Home = () => {
+    const {user} = useLogin()
+
     return(
         <>
             <HomeHeader/>
             <HomeThreeColumns/>
             <SimpleTricks/>
-            <GiveThings text1={"ODDAJ"} text2={"RZECZY"} to={"/Login"}/>
+            <GiveThings text1={"ODDAJ"} text2={"RZECZY"} to={user ? "/oddaj-rzeczy" : "/login"}/>
             <AboutUs/>
             <Help/>
             <Contact/>

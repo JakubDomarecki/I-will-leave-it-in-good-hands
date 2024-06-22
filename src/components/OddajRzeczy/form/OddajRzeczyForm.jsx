@@ -8,70 +8,70 @@ import Summary from "./Summary.jsx";
 import ThankYou from "./ThankYou.jsx";
 
 const OddajRzeczyForm = () => {
-    const [showStep1, setShowStep1] = useState(true)
-    const [showStep2, setShowStep2] = useState(false)
-    const [showStep3, setShowStep3] = useState(false)
-    const [showStep4, setShowStep4] = useState(false)
-    const [showSummary, setShowSummary] = useState(false)
-    const [showThanks, setShowThanks] = useState(false)
 
-    const handleShowStep2 = () => {
-        setShowStep1(false)
-        setShowStep2(true)
+    const [currentStep, setCurrentStep] = useState(1);
+
+    const [SelectedCheckboxes, setSelectedCheckboxes] = useState([])
+    const [selectedSelect_step2, setSelectedSelect_step2] = useState([])
+    const [selectedSelect_step3, setSelectedSelect_step3] = useState([])
+    const [selectedDiv, setSelectedDiv] = useState([])
+    const [input_step3, setInput_step3] = useState("")
+    const [formData, setFormData] = useState();
+
+    const handleSelectedChecbkboxes = (newSelectedChecboxes)=> {
+        setSelectedCheckboxes(newSelectedChecboxes)
     }
-
-    const handleShowStep3 = () => {
-        setShowStep2(false)
-        setShowStep3(true)
+    const handleselectedSelect_step2 = (select_step2) => {
+        setSelectedSelect_step2(select_step2)
     }
-
-    const handleShowStep4 = () => {
-        setShowStep3(false)
-        setShowStep4(true)
+    const handleselectedSelect_step3 = (select_step3) => {
+        setSelectedSelect_step3(select_step3)
     }
-
-    const handleShowSummary = () => {
-        setShowStep4(false)
-        setShowSummary(true)
+    const handleselectedSelectDiv = (selectDiv) => {
+        setSelectedDiv(selectDiv)
     }
-
-    const handleShowThanks = () => {
-        setShowSummary(false)
-        setShowThanks(true)
+    const handlInputValue3 = (e) => {
+        setInput_step3(e.target.value)
     }
-
-    //hide
-    const handleHideStep2 = () => {
-        setShowStep2(false)
-        setShowStep1(true)
-    }
-
-    const handleHideStep3 = () => {
-        setShowStep2(true)
-        setShowStep3(false)
-    }
-
-    const handleHideStep4 = () => {
-        setShowStep3(true)
-        setShowStep4(false)
-    }
-
-    const handleHideSummary = () => {
-        setShowStep4(true)
-        setShowSummary(false)
-    }
+    const handleFormData = (data) => {
+        setFormData(data);
+    };
 
 
 
-    return(
+    const nextStep = () => setCurrentStep(prevStep => prevStep + 1);
+    const prevStep = () => setCurrentStep(prevStep => prevStep - 1);
+
+
+
+    return (
         <>
-            {showStep1 && <Step1 showStep2={handleShowStep2}/>}
-            {showStep2 &&  <Step2 showStep3={handleShowStep3} hideStep2={handleHideStep2}/>}
-            {showStep3 &&  <Step3 showStep4={handleShowStep4} hideStep3={handleHideStep3}/>}
-            {showStep4 &&  <Step4 showSummary={handleShowSummary} hideStep4={handleHideStep4}/>}
-            {showSummary && <Summary showThanks={handleShowThanks} hideSummary={handleHideSummary}/>}
-            {showThanks && <ThankYou/>}
+            {currentStep === 1 && <Step1 nextStep={nextStep} handleSelectedChecbkboxes={handleSelectedChecbkboxes} existingData={SelectedCheckboxes}/>}
+            {currentStep === 2 && <Step2  nextStep={nextStep} prevStep={prevStep} handleselectedSelect_step2={handleselectedSelect_step2} existingData={selectedSelect_step2}/>}
+            {currentStep === 3 && <Step3
+                nextStep={nextStep}
+                prevStep={prevStep}
+                handleselectedSelect_step3={handleselectedSelect_step3}
+                handleselectedSelectDiv={handleselectedSelectDiv}
+                handlInputValue3={handlInputValue3}
+                existingData1={selectedSelect_step3}
+                existingData2={selectedDiv}
+                existingData3={input_step3}
+
+            />}
+            {currentStep === 4 && <Step4  nextStep={nextStep} prevStep={prevStep} handleFormData={handleFormData} existingData={formData}/>}
+            {currentStep === 5 && <Summary
+                nextStep={nextStep}
+                prevStep={prevStep}
+                SelectedCheckboxes={SelectedCheckboxes}
+                selectedSelect_step2={selectedSelect_step2}
+                selectedSelect_step3={selectedSelect_step3}
+                selectedDiv={selectedDiv}
+                input_step3={input_step3}
+                formData={formData}
+            />}
+            {currentStep === 6 && <ThankYou />}
         </>
-    )
+    );
 }
 export default OddajRzeczyForm

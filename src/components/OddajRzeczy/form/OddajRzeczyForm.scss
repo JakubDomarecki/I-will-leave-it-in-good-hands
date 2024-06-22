@@ -3,6 +3,9 @@
   height: 100vh;
   background-image: url("../../../assets/Background-Form.jpg");
   background-repeat: no-repeat;
+  @media (max-width: 1700px)  {
+    padding: 4rem;
+  }
 }
 .step_give{
   padding-top: 2rem;
@@ -25,6 +28,9 @@
   border: 1px solid $colorDarkGrey;
   cursor: pointer;
   margin-right: 3rem;
+}
+.button_step1{
+  margin-top: 7rem;
 }
 
 .step_1_checkbox{
@@ -173,6 +179,8 @@
 }
 .you_give_container_title2{
   width: 200px;
+  font-size: 24px;
+  font-family: "Open Sans light", sans-serif;
 }
 .summary_column_container{
   display: flex;
