@@ -1,37 +1,42 @@
 @import "../../scss/colors";
-.login_nav{
+.login_nav {
   height: 90px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  z-index: 9999;
+  position: relative;
+  @media (max-width: 1669px) {
+    padding: 1rem;
+  }
 }
-.nav{
+.nav {
   display: flex;
   list-style: none;
   cursor: pointer;
 }
-.login-item{
+.login-item {
   margin-left: 2rem;
 }
-.login-item a{
+.login-item a {
   text-decoration: none;
   color: $colorGrey;
   padding: 1rem;
   display: inline-block;
 }
-.register{
+.register {
   border: 1px solid $colorYellow;
 }
 
-.nav_link{
+.nav_link {
   margin-left: 2rem;
 }
-.nav_link a{
+.nav_link a {
   text-decoration: none;
   color: $colorDarkGrey;
   padding: 0.5rem 1rem;
   display: inline-block;
 }
-.start{
+.start {
   border: 1px solid $colorDarkGrey;
 }

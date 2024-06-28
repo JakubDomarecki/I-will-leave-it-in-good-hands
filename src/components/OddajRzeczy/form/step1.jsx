@@ -36,7 +36,7 @@ const Step1 = ({nextStep,handleSelectedChecbkboxes, existingData}) => {
                     {checkboxes.map(checkbox => (
                         <div className="single_checkbox" key={checkbox}>
                             <input key={checkbox} type="checkbox" className="step_1_checkbox" value={selected}
-                                   onChange={e => handleSelectedCheckbox(checkbox)}/>
+                                   onChange={e => handleSelectedCheckbox(checkbox)} checked={selected.includes(checkbox)}/>
                             <label>{checkbox}</label>
                         </div>
                     ))}
