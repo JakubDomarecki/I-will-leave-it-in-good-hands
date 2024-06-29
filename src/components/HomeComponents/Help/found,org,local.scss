@@ -6,29 +6,33 @@
   font-size: 22px;
   color: $colorDarkGrey;
 }
-.foundation_container{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 1334px;
-  border-bottom: 1px solid $colorDarkGrey;
-  text-align: left;
-  padding: 2rem 0;
+
+.foundation{
+  &_container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1334px;
+    border-bottom: 1px solid $colorDarkGrey;
+    text-align: left;
+    padding: 2rem 0;
+  }
+  &_name{
+    font-size: 26px;
+    font-family: merriweather-light, sans-serif;
+    color: $colorDarkGrey;
+  }
+  &_mission, &_foundation_needs{
+    font-size: 18px;
+    font-family: merriweather-light, sans-serif;
+    color: $colorDarkGrey;
+  }
+  &_needs{
+    display: flex;
+    align-self: center;
+  }
 }
-.foundation_name{
-  font-size: 26px;
-  font-family: merriweather-light, sans-serif;
-  color: $colorDarkGrey;
-}
-.foundation_mission, .foundation_needs{
-  font-size: 18px;
-  font-family: merriweather-light, sans-serif;
-  color: $colorDarkGrey;
-}
-.foundation_needs{
-  display: flex;
-  align-self: center;
-}
+
 .single_number{
   background-color: transparent;
   padding: 1rem;

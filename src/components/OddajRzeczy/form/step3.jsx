@@ -99,7 +99,7 @@ const Step3 = ({nextStep,prevStep,handleselectedSelect_step3,handleselectedSelec
 
                 <div className="organization_input_title">
                     <h3 className="organization_input_title_desc">Wpisz nazwę konkretnej organizacji (opcjonalnie)</h3>
-                    <input type="text" className="oganization_input" value={inputValue} onChange={handleInputValue}/>
+                    <input type="text" className="organization_input" value={inputValue} onChange={handleInputValue}/>
                 </div>
 
                 <div>

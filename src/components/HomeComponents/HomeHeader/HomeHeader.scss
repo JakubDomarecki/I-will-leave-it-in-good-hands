@@ -2,9 +2,9 @@
 .StartingPage {
   display: flex;
   height: 785px;
-}
-.StartingPage_image {
-  width: 50%;
+  &_image{
+    width: 50%;
+  }
 }
 .starting_image {
   position: absolute;
@@ -18,13 +18,14 @@
   margin-top: 10rem;
   width: 50%;
   z-index: 999;
+  &_p{
+      font-size: 38px;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: $colorDarkGrey;
+  }
 }
-.header_description_p {
-  font-size: 38px;
-  text-align: center;
-  margin-bottom: 2rem;
-  color: $colorDarkGrey;
-}
+
 .description {
   display: flex;
   align-items: center;

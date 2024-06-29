@@ -26,7 +26,7 @@ const Step2 = ({ nextStep, prevStep, handleselectedSelect_step2, existingData })
                 <p className="step_give">Krok 2/4</p>
                 <p className="step_give_desc">Podaj liczbę 60l worków, w które spakowałeś/aś rzeczy:</p>
                 <div className="step2_container">
-                    <label className="step_2_title">Liczba 60l worków:</label>
+                    <label className="step2_title">Liczba 60l worków:</label>
                     <div className="custom-select" onClick={toggleDropdown}>
                         <div className="custom-select-trigger">
                             {selectedOption ? selectedOption : '— wybierz —'}

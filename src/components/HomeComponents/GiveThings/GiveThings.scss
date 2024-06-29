@@ -3,21 +3,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.GiveThings a{
-  text-decoration: none;
-  cursor: pointer;
-}
-.GiveThings_button{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 3rem;
-  border: 1px solid $colorDarkGrey;
-  width: 310px;
-  height: 120px;
-  font-size: 36px;
-  color: $colorDarkGrey;
-  text-align: center;
-  font-family: "Open Sans light", sans-serif;
+  &_button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem;
+    border: 1px solid $colorDarkGrey;
+    width: 310px;
+    height: 120px;
+    font-size: 36px;
+    color: $colorDarkGrey;
+    text-align: center;
+    font-family: "Open Sans light", sans-serif;
+  }
+  & a{
+    text-decoration: none;
+    cursor: pointer;
+  }
 }

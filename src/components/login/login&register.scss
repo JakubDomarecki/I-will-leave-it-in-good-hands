@@ -5,63 +5,65 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-}
-.login_form{
-  width: 500px;
-  display: flex;
-  flex-direction: column;
-  background-color:$colorWhite ;
-  padding-left: 5rem;
-  padding-right: 5rem;
-  padding-top: 1rem;
-  padding-bottom: 2rem;
-}
-.login_decoration{
-  margin-bottom: 3rem;
-}
-.form_login{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-.login_h2{
-  margin-bottom: 1rem;
-  color: $colorDarkGrey;
-}
-.login_input{
-  background-color: transparent;
-  border: none;
-  border-bottom: 1px solid $colorDarkGrey;
-  &:focus{
-    outline: none;
+  &_form{
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    background-color:$colorWhite ;
+    padding: 1rem 5rem 2rem 5rem;
+  }
+  &_decoration{
+    margin-bottom: 2rem;
+  }
+  &_h2{
+    margin-bottom: 1rem;
+    color: $colorDarkGrey;
+  }
+  &_input{
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid $colorDarkGrey;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    &:focus{
+      outline: none;
+    }
+  }
+  &_buttons{
+    margin-top: 1rem;
+    margin-inline: 13rem;
+    color: $colorDarkGrey;
+    text-decoration: none;
+  }
+  &_button{
+    border: 1px solid $colorDarkGrey;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
   }
 }
-.form_label{
-  font-family: "Open Sans semibold", sans-serif;
-  color: $colorDarkGrey;
-  margin-bottom: 1rem;
-  margin-top: 1rem;
+
+.form{
+  &_label{
+    font-family: "Open Sans semibold", sans-serif;
+    color: $colorDarkGrey;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+  &_login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
 }
-.login_buttons{
-  margin-top: 1rem;
-  margin-left: 8rem;
-  margin-right: 8rem;
-  color: $colorDarkGrey;
-  text-decoration: none;
-}
-.login_button{
-  border: 1px solid $colorDarkGrey;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-}
+
+
 .register_buttons{
   margin-top: 2rem;
 }
 .input_error {
   border-bottom: 2px solid red;
 }
-
 .succed{
   color: green;
   margin-bottom: 1rem;

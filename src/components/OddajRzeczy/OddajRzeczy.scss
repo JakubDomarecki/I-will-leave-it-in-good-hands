@@ -2,50 +2,50 @@
 .FormPage{
   display: flex;
   height: 673px;
+  &_image{
+    width: 50%;
+  }
+  &_description{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 5rem;
+    width: 50%;
+    z-index: 99;
+  }
 }
-.FormPage_image{
-  width: 50%;
-}
-.FormPage_description{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-top: 5rem;
-  width: 50%;
-  z-index: 99;
-}
+
 .description_Form{
   display: flex;
   align-items: center;
   flex-direction: column;
 }
-.form_image{
-  position: absolute;
-  top: 0;
-}
-.form_4steps{
-  font-size: 40px;
-  color: $colorDarkGrey ;
-  font-family: "Open Sans light", sans-serif;
-  margin-top: 1rem;
-}
-.form_title{
-  z-index: 1;
-  max-width: 700px;
-}
-.form_notification{
-  background-color: $colorYellow;
-  height: 179px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+.form{
+  &_image{
+    position: absolute;
+    top: 0;
+  }
+  &_4steps{
+    font-size: 40px;
+    color: $colorDarkGrey ;
+    font-family: "Open Sans light", sans-serif;
+    margin-top: 1rem;
+  }
+  &_title{
+    z-index: 1;
+    max-width: 700px;
+  }
+  &_notification{
+    background-color: $colorYellow;
+    height: 179px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
-.diamond-container{
-  display: flex;
-  margin-top: 5rem;
-  gap:10px
-}
+
 .diamond {
   position: relative;
   width: 190px;
@@ -57,13 +57,18 @@
   align-items: center;
   border: 1px solid $colorDarkGrey;
   color: $colorDarkGrey;
-}
-.diamond-content{
-  transform: rotate(-45deg);
-  max-width: 100px;
-  text-align: center;
-  font-size: 22px;
-  font-family: "Open Sans light",sans-serif;
+  &-container{
+    display: flex;
+    margin-top: 5rem;
+    gap:10px
+  }
+  &-content{
+    transform: rotate(-45deg);
+    max-width: 100px;
+    text-align: center;
+    font-size: 22px;
+    font-family: "Open Sans light",sans-serif;
+  }
 }
 .number {
   display: block;

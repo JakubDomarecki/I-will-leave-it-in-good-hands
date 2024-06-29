@@ -18,6 +18,56 @@
     top: 0;
     left: 0;
   }
+  &_title{
+    display: flex;
+    justify-content: center;
+    font-size: 38px;
+    margin-bottom: 1rem;
+  }
+  &_form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 8.875rem;
+    width: 528px;
+    z-index: 99;
+  }
+  &_texarea{
+    min-width: 528px;
+    max-width: 528px;
+    min-height: 100px;
+    max-height: 100px;
+    background-color: transparent;
+    border: none;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid black ;
+    padding: 0.5rem;
+    &::after{
+      content: "";
+      height: 1px;
+      background: black;
+    }
+    &::placeholder{
+      color: #3C3C3C26;
+    }
+  }
+  &_label{
+    font-family: "Open Sans semibold", sans-serif;
+    margin-bottom: 1rem;
+  }
+  &_input{
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid $colorDarkGrey;
+    padding: 0.5rem;
+    &::placeholder{
+      color: #3C3C3C26;
+    }
+    &:focus{
+      outline: none;
+    }
+  }
 }
 .form_inputs{
   display: flex;
@@ -30,21 +80,6 @@
   margin-bottom: 1rem;
   margin-left: 1rem;
 }
-.contact_title{
-  display: flex;
-  justify-content: center;
-  font-size: 38px;
-  margin-bottom: 1rem;
-}
-.contact_form{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin: 8.875rem;
-  width: 528px;
-  z-index: 99;
-}
 .Button_div{
   display: flex;
   justify-content: flex-end;
@@ -55,41 +90,6 @@
   font-family: "Open Sans light", sans-serif;
   border: 0.75px solid $colorDarkGrey;
   cursor: pointer;
-}
-.contact_texarea{
-  min-width: 528px;
-  max-width: 528px;
-  min-height: 100px;
-  max-height: 100px;
-  background-color: transparent;
-  border: none;
-  margin-bottom: 1rem;
-  border-bottom: 1px solid black ;
-  padding: 0.5rem;
-  &::after{
-    content: "";
-    height: 1px;
-    background: black;
-  }
-  &::placeholder{
-    color: #3C3C3C26;
-  }
-}
-.contact_label{
-  font-family: "Open Sans semibold", sans-serif;
-  margin-bottom: 1rem;
-}
-.contact_input{
-  background-color: transparent;
-  border: none;
-  border-bottom: 1px solid $colorDarkGrey;
-  padding: 0.5rem;
-  &::placeholder{
-    color: #3C3C3C26;
-  }
-  &:focus{
-    outline: none;
-  }
 }
 .error {
   border-bottom: 1px solid red;
