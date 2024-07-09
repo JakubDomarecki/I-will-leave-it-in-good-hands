@@ -28,6 +28,7 @@ There are many solutions available, but many of them require extra effort or lac
 - React Scroll
 - React Router
 - Context API
+- REST API
 - Hooks
 - Vite
   
