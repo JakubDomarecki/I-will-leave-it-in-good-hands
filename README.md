@@ -29,6 +29,7 @@ There are many solutions available, but many of them require extra effort or lac
 - React Router
 - Context API
 - REST API
+- Firebase
 - Hooks
 - Vite
   
